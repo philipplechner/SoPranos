@@ -1,0 +1,2 @@
+# SoPranos
+Softwarepraktikum Gruppe Sopranos
