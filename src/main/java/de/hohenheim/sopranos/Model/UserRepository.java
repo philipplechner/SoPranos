@@ -1,4 +1,4 @@
-package de.hohenheim.sopranos.Model;
+package de.hohenheim.sopranos.model;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

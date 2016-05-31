@@ -1,11 +1,11 @@
 
 
-package de.hohenheim.sopranos.Controller;
+package de.hohenheim.sopranos.controller;
 
-        import de.hohenheim.sopranos.Model.LearningGroup;
-        import de.hohenheim.sopranos.Model.LearningGroupRepository;
-        import de.hohenheim.sopranos.Model.User;
-        import de.hohenheim.sopranos.Model.UserRepository;
+        import de.hohenheim.sopranos.model.LearningGroup;
+        import de.hohenheim.sopranos.model.LearningGroupRepository;
+        import de.hohenheim.sopranos.model.User;
+        import de.hohenheim.sopranos.model.UserRepository;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
