@@ -1,22 +1,47 @@
-package de.hohenheim.sopranos.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * Created by Marvin on 10.05.2016.
- */
+package de.hohenheim.sopranos.Controller;
+
+        import de.hohenheim.sopranos.Model.LearningGroup;
+        import de.hohenheim.sopranos.Model.LearningGroupRepository;
+        import de.hohenheim.sopranos.Model.User;
+        import de.hohenheim.sopranos.Model.UserRepository;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.ui.Model;
+        import org.springframework.web.bind.annotation.RequestMapping;
+        import org.springframework.web.bind.annotation.RequestParam;
+
+        import java.util.ArrayList;
+        import java.util.List;
+
 
 @Controller
 public class GreetingController {
 
+    @Autowired
+    LearningGroupRepository learningGroupRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="Willkommen!") String name, Model model) {
+    public String greeting(@RequestParam(value="name",
+            required=false, defaultValue="World")
+                                   String name,
+                           Model model) {
+        LearningGroup lg1 = new LearningGroup();
+        User user1 = new User();
+        User user2 = new User();
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        users.add(user2);
+        lg1.setUsers(users);
+        lg1.setName("Lerngruppe 1");
+        learningGroupRepository.save(lg1);
         model.addAttribute("name", name);
         return "greeting";
-
-
-}
     }
+}
