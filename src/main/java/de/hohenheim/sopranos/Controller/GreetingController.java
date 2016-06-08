@@ -34,7 +34,6 @@ public class GreetingController {
         User user1 = new User();
         User user2 = new User();
         List<User> users = new ArrayList<>();
-        users.add(user1);
         userRepository.save(user1);
         userRepository.save(user2);
         users.add(user2);
