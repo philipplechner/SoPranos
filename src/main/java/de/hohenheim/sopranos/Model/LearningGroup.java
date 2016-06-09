@@ -10,17 +10,25 @@ public class LearningGroup {
 
     @Id
     @GeneratedValue
-    Integer id;
+    Integer lgId;
 
     String name;
 
+    String description;
 
-    public Integer getId() {
-        return id;
+    public LearningGroup() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public LearningGroup(String name) {
+        this.name = name;
+    }
+
+    public Integer getLgId() {
+        return lgId;
+    }
+
+    public void setLgId(Integer lgId) {
+        this.lgId = lgId;
     }
 
     public String getName() {
@@ -29,6 +37,14 @@ public class LearningGroup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<User> getUsers() {
@@ -41,9 +57,9 @@ public class LearningGroup {
 
     @ManyToMany
     @JoinTable(
-            name="GROUPPARTICIPANTS",
-            joinColumns = @JoinColumn(name="GROUP_ID"),
-            inverseJoinColumns=@JoinColumn(name="USER_ID"))
+            name = "GROUPPARTICIPANTS",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
 
     List<User> users = new ArrayList<>();
 
