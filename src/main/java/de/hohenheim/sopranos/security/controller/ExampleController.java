@@ -32,20 +32,20 @@ public class ExampleController extends WebMvcConfigurerAdapter {
   public String userHome() {
     return "userhome";
   }
-
+     
   /**
    * Request mapping for the disputeResolutionOverview page or administrationOverview page depending on user role.
    * Propagates to respective methods
-   *
+   *                                     
    * @return home url?
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String displayHome() {
-    if (((User) SecurityContextHolder.getContext().getAuthentication()
-        .getPrincipal()).getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-      return "redirect:/admin/index";
-    } else {
+//    if (((User) SecurityContextHolder.getContext().getAuthentication()
+//        .getPrincipal()).getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//      return "redirect:/admin/index";
+//    } else {
       return "redirect:/index";
-    }
+//    }
   }
 }
