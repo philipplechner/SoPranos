@@ -24,10 +24,34 @@ import java.util.Collection;
 @Controller
 public class RegisterController {
 
-    @RequestMapping(value="/learninggroup")
-    public String signin() {
-        return "learninggroup";
-    }
+    @Autowired
+    private UserDetailsManager userDetailsManager;
+    @Autowired
+    private SopraUserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
+
+    @RequestMapping(value="/register", method=RequestMethod.GET)
+    public String signin(@RequestParam(value="name",
+            required=false, defaultValue="World")  
+                                 String name,
+                         Model model) {
+    	model.addAttribute("SopraUser", new SopraUser());
+        return "register";
+    } 
+
+    @RequestMapping(value="/register", method=RequestMethod.POST)
+    public String registerSubmit( SopraUser user, Model model) {
+    	if(user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getUsername().isEmpty()){
+    		return "register?error"; 
+    	}
+        model.addAttribute("SopraUser", user);
+        Collection<GrantedAuthority> auth = new ArrayList<>();
+        auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+        userDetailsManager.createUser(new User(user.getUsername(), passwordEncoder.encode(user.getPassword()), auth));
+        userRepository.save(user);
+        return "login";
+    }
 }
    

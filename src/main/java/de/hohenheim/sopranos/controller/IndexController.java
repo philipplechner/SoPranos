@@ -18,5 +18,5 @@ public class IndexController {
                          Model model) {
 
         return "index";
-    }
+    } 
 }
