@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http.authorizeRequests()
         //Zuerst müssen Seiten konfiguriert werden, welche ohne Zugriffsrechte aufgerufen werden dürfen
         //(falls vorhanden)
-        .antMatchers("/signin").permitAll()
+        .antMatchers("/login").permitAll().antMatchers("/register").permitAll().antMatchers("/h2-console").permitAll()
         //Für Address-Unterbereiche, welche nur mit speziellen Rechten betreten werden können, kann dies explizit
         //angegeben werfen. (Hier: alles hinter /admin/... , z.b. /admin/home/ benötigt admin Rechte.
         .antMatchers("/admin/**").hasRole("ADMIN")
@@ -45,13 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //werden nicht überschrieben!
         .anyRequest().fullyAuthenticated().and()
         //Konfiguration des Logins. Unter welcher Addresse ist die Login Seite zu finden etc.
-        .formLogin().loginPage("/signin").failureUrl("/signin?error").permitAll().and()
+        .formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and()
         //jeder darf sich ausloggen
         .logout().permitAll().and()
         //Sicherheit für /console ausgeschaltet
         .csrf().ignoringAntMatchers("/console/**").disable();
     //header security ausgeschalten, um h2 console zu erlauben
-    http.headers().frameOptions().disable();
+           http.headers().frameOptions().disable();
   }
 
   /**

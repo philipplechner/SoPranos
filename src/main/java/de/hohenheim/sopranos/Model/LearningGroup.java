@@ -1,7 +1,6 @@
 package de.hohenheim.sopranos.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,6 +14,17 @@ public class LearningGroup {
     String name;
 
     String description;
+
+    @ManyToMany
+    @JoinTable(
+            name = "GROUPPARTICIPANTS",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    public List<SopraUser> sopraUsers;
+
+    @OneToMany(mappedBy = "learningGroup")
+    public List<Post> postSet;
+
 
     public LearningGroup() {
     }
@@ -47,23 +57,19 @@ public class LearningGroup {
         this.description = description;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<SopraUser> getSopraUsers() {
+        return sopraUsers;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setSopraUsers(List<SopraUser> sopraUsers) {
+        this.sopraUsers = sopraUsers;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "GROUPPARTICIPANTS",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    public List<Post> getPostSet() {
+        return postSet;
+    }
 
-    List<User> users = new ArrayList<>();
-
-
+    public void setPostSet(List<Post> postSet) {
+        this.postSet = postSet;
+    }
 }
-
-

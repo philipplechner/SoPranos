@@ -1,7 +1,7 @@
 package de.hohenheim.sopranos.security.config;
 
-import de.hohenheim.sopranos.security.model.SopraUser;
-import de.hohenheim.sopranos.security.model.SopraUserRepository;
+import de.hohenheim.sopranos.model.SopraUserRepository;
+import de.hohenheim.sopranos.model.SopraUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -28,7 +28,7 @@ public class TestSetup implements ApplicationListener<ContextRefreshedEvent> {
   @Autowired
   private BCryptPasswordEncoder passwordEncoder;
   @Autowired
-  private SopraUserRepository userRepository;
+  private SopraUserRepository sopraUserRepository;
 
   /**
    * Handle an application event.
@@ -45,13 +45,13 @@ public class TestSetup implements ApplicationListener<ContextRefreshedEvent> {
     authsHans.add(new SimpleGrantedAuthority("ROLE_USER"));
     userDetailsManager.createUser(new User("hans", passwordEncoder.encode("hugo"), authsHans));
 
-    SopraUser user1 = new SopraUser();
-    user1.setUsername("admin");
-    userRepository.save(user1);
+    SopraUser user1 = new SopraUser("admin@aol.de" , "admin");
+    user1.setName("admin");
+    sopraUserRepository.save(user1);
 
-    SopraUser user2 = new SopraUser();
-    user2.setUsername("hans");
-    userRepository.save(user2);
+    SopraUser user2 = new SopraUser("hans@aol.de", "hugo");
+    user2.setName("hans");
+    sopraUserRepository.save(user2);
   }
 
 

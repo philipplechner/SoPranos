@@ -1,13 +1,14 @@
 
 package de.hohenheim.sopranos.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class User {
+public class SopraUser {
 
     @Id
+    @Column(name = "email", unique = true, nullable = false)
     String email;
 
     String password;
@@ -18,11 +19,18 @@ public class User {
 
     Integer rankpoints;
 
-    public User() {
+    @ManyToMany(mappedBy = "sopraUsers")
+    public List<LearningGroup> learningGroups;
+
+
+    @OneToMany(mappedBy = "sopraUser")
+    public List<Post> postSet;
+
+    public SopraUser() {
 
     }
 
-    public User(String email, String password) {
+    public SopraUser(String email, String password) {
         this.email = email;
         this.password = password;
         this.name = null;
@@ -69,4 +77,12 @@ public class User {
     public void setRankpoints(Integer rankpoints) {
         this.rankpoints = rankpoints;
     }
+
+    public List<LearningGroup> getLearningGroups() {return learningGroups;}
+
+    public void setLearningGroups(List<LearningGroup> learningGroups) {this.learningGroups = learningGroups;}
+
+    public List<Post> getPostSet() {return postSet;}
+
+    public void setPostSet(List<Post> postSet) {this.postSet = postSet;}
 }

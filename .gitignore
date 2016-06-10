@@ -16,6 +16,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .gradle/2.13/taskArtifacts/cache.properties
 .idea/workspace.xml
-
 *.class
-

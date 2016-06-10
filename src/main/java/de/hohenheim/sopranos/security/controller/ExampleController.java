@@ -18,34 +18,34 @@ public class ExampleController extends WebMvcConfigurerAdapter {
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/signin").setViewName("signin");
+    registry.addViewController("/login").setViewName("login");
     registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
   }
 
 
-  @RequestMapping(value = "/admin/home")
+  @RequestMapping(value = "/admin/index")
   public String adminHome() {
     return "adminhome";
   }
 
-  @RequestMapping(value = "/home")
+  @RequestMapping(value = "/user/index")
   public String userHome() {
     return "userhome";
   }
-
+     
   /**
    * Request mapping for the disputeResolutionOverview page or administrationOverview page depending on user role.
    * Propagates to respective methods
-   *
+   *                                     
    * @return home url?
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String displayHome() {
-    if (((User) SecurityContextHolder.getContext().getAuthentication()
-        .getPrincipal()).getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-      return "redirect:/admin/home";
-    } else {
-      return "redirect:/home";
-    }
+//    if (((User) SecurityContextHolder.getContext().getAuthentication()
+//        .getPrincipal()).getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//      return "redirect:/admin/index";
+//    } else {
+      return "redirect:/index";
+//    }
   }
 }
