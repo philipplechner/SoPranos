@@ -1,7 +1,7 @@
 .gradle
 .idea
 build/
-.idea\
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -17,3 +17,4 @@ gradle-app.setting
 .gradle/2.13/taskArtifacts/cache.properties
 .idea/workspace.xml
 *.class
+.idea/workspace.xml
