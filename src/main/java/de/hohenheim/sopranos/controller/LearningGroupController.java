@@ -1,7 +1,9 @@
 package de.hohenheim.sopranos.controller;
 
 import de.hohenheim.sopranos.model.LearningGroup;
+import de.hohenheim.sopranos.model.LearningGroupRepository;
 import de.hohenheim.sopranos.model.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class LearningGroupController {
+
+    @Autowired
+    LearningGroupRepository learningGroupRepository;
 
     @RequestMapping(value = "/learninggrouppost", method = RequestMethod.GET)
     public String post(Model model) {  
@@ -38,8 +43,8 @@ public class LearningGroupController {
     }
     @RequestMapping(value ="/learninggroupcreate", method = RequestMethod.POST) 
     public String createFinish(LearningGroup lg , Model model) {
-    	System.out.println(lg.getName());
-        return "learninggroupcreate";
+        learningGroupRepository.save(lg);
+        return "index";
     }
     @RequestMapping("/learninggroup")
     public String show(Model model) {

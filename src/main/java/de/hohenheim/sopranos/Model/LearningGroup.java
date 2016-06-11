@@ -15,11 +15,15 @@ public class LearningGroup {
 
     String description;
 
+    String password;
+
+    Boolean freeForAll;
+
     @ManyToMany
     @JoinTable(
             name = "GROUPPARTICIPANTS",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+            inverseJoinColumns = @JoinColumn(name = "USERMAIL"))
     public List<SopraUser> sopraUsers;
 
     @OneToMany(mappedBy = "learningGroup")
@@ -28,6 +32,7 @@ public class LearningGroup {
 
     public LearningGroup() {
     }
+
 
     public LearningGroup(String name) {
         this.name = name;
@@ -57,6 +62,17 @@ public class LearningGroup {
         this.description = description;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        if (!password.isEmpty())
+            freeForAll = false;
+
+        this.password = password;
+    }
+
     public List<SopraUser> getSopraUsers() {
         return sopraUsers;
     }
@@ -72,4 +88,5 @@ public class LearningGroup {
     public void setPostSet(List<Post> postSet) {
         this.postSet = postSet;
     }
+
 }

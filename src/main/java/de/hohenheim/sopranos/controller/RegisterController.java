@@ -13,11 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 
 /**
@@ -36,24 +34,21 @@ public class RegisterController {
     private BCryptPasswordEncoder passwordEncoder;
 
 
-    @RequestMapping(value="/register", method=RequestMethod.GET)
-    public String signin(@RequestParam(value="name",
-            required=false, defaultValue="World")  
-                                 String name,
-                         Model model) {
-    	model.addAttribute("SopraUser", new SopraUser());
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String signin(String name, Model model) {
+        model.addAttribute("SopraUser", new SopraUser());
         return "register";
-    } 
+    }
 
-    @RequestMapping(value="/register", method=RequestMethod.POST)
-    public String registerSubmit( SopraUser user, Model model) {
-    	if(user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getName().isEmpty()){
-    		return "register?error"; 
-    	}
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String registerSubmit(SopraUser user, Model model) {
+        if (user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getName().isEmpty()) {
+            return "register?error";
+        }
         model.addAttribute("SopraUser", user);
         Collection<GrantedAuthority> auth = new ArrayList<>();
         auth.add(new SimpleGrantedAuthority("ROLE_USER"));
-        userDetailsManager.createUser(new User(user.getName(), passwordEncoder.encode(user.getPassword()), auth));
+        userDetailsManager.createUser(new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), auth));
         sopraUserRepository.save(user);
         return "login";
     }
