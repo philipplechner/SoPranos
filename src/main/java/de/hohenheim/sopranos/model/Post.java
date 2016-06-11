@@ -17,12 +17,12 @@ public class Post {
     Integer id;
 
     String text;
-
+ 
     public Post() {}
 
     public Post(String text) {
         this.text = text;
-    }
+    } 
 
     @ManyToOne
     public LearningGroup learningGroup;

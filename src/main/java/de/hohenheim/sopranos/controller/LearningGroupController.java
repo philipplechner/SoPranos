@@ -1,5 +1,6 @@
 package de.hohenheim.sopranos.controller;
 
+import de.hohenheim.sopranos.model.LearningGroup;
 import de.hohenheim.sopranos.model.Post;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LearningGroupController {
 
     @RequestMapping(value = "/learninggrouppost", method = RequestMethod.GET)
-    public String post(Model model) {
+    public String post(Model model) {  
         model.addAttribute("posttest", new Post());
         return "learninggrouppost";
     }
@@ -28,9 +29,18 @@ public class LearningGroupController {
         Post t = new Post();
         t.setText(s.toString() + " by " + name);
         model.addAttribute("post", t);
-        return "learninggroup";
+        return "learninggroup"; 
     }
-
+    @RequestMapping(value ="/learninggroupcreate", method = RequestMethod.GET)
+    public String create(Model model) {
+    	model.addAttribute("group", new LearningGroup());
+        return "learninggroupcreate";
+    }
+    @RequestMapping(value ="/learninggroupcreate", method = RequestMethod.POST) 
+    public String createFinish(LearningGroup lg , Model model) {
+    	System.out.println(lg.getName());
+        return "learninggroupcreate";
+    }
     @RequestMapping("/learninggroup")
     public String show(Model model) {
 
