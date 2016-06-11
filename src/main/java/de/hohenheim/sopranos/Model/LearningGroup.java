@@ -17,7 +17,7 @@ public class LearningGroup {
 
     String password;
 
-    Boolean freeForAll;
+    Boolean freeForAll = true;
 
     @ManyToMany
     @JoinTable(

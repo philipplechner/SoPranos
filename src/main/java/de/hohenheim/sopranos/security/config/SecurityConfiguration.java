@@ -5,12 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.JdbcUserDetailsManagerConfigurer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
@@ -38,9 +34,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //Zuerst müssen Seiten konfiguriert werden, welche ohne Zugriffsrechte aufgerufen werden dürfen
         //(falls vorhanden)
         .antMatchers("/login").permitAll().antMatchers("/register").permitAll().antMatchers("/h2-console").permitAll()
-        //Für Address-Unterbereiche, welche nur mit speziellen Rechten betreten werden können, kann dies explizit
-        //angegeben werfen. (Hier: alles hinter /admin/... , z.b. /admin/home/ benötigt admin Rechte.
-        .antMatchers("/admin/**").hasRole("ADMIN")
         //Jeder bisher nicht erwähnte Aufruf in der Anwendung muss authentifiziert sein. Bisher konfigurierte Ausnahmen
         //werden nicht überschrieben!
         .anyRequest().fullyAuthenticated().and()
