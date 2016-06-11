@@ -1,16 +1,13 @@
 package de.hohenheim.sopranos.controller;
 
-<<<<<<< HEAD
+
 import de.hohenheim.sopranos.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-=======
->>>>>>> refs/remotes/origin/newmortmann
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,26 +19,18 @@ public class IndexController {
     LearningGroupRepository learningGroupRepository;
 
     @Autowired
-    SopraUserRepository sopraUserRepository;
-
-    @Autowired
     PostRepository postRepository;
 
-=======
-/**
- * Created by MortmannMKII v2 on 08.06.2016.
- */
-@Controller
-public class IndexController {
+    @Autowired
+    SopraUserRepository sopraUserRepository;
 
->>>>>>> refs/remotes/origin/newmortmann
     @RequestMapping("/index")
-    public String index(@RequestParam(value="name",
-            required=false, defaultValue="World")
-                                 String name,
-                         Model model) {
+    public String index(@RequestParam(value = "name",
+            required = false, defaultValue = "World")
+                                String name,
+                        Model model) {
 
-<<<<<<< HEAD
+
         List<SopraUser> users = new ArrayList<SopraUser>();
 
         LearningGroup lg1 = new LearningGroup("Lerngruppe 1");
@@ -75,8 +64,7 @@ public class IndexController {
 
         return "index";
     }
-=======
-        return "index";
-    } 
->>>>>>> refs/remotes/origin/newmortmann
+
+
 }
+

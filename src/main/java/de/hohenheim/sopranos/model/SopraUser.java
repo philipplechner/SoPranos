@@ -27,7 +27,6 @@ public class SopraUser {
     public List<Post> postSet;
 
     public SopraUser() {
-
     }
 
     public SopraUser(String email, String password) {
@@ -78,11 +77,19 @@ public class SopraUser {
         this.rankpoints = rankpoints;
     }
 
-    public List<LearningGroup> getLearningGroups() {return learningGroups;}
+    public List<LearningGroup> getLearningGroups() {
+        return learningGroups;
+    }
 
-    public void setLearningGroups(List<LearningGroup> learningGroups) {this.learningGroups = learningGroups;}
+    public void setLearningGroups(List<LearningGroup> learningGroups) {
+        this.learningGroups = learningGroups;
+    }
 
-    public List<Post> getPostSet() {return postSet;}
+    public List<Post> getPostSet() {
+        return postSet;
+    }
 
-    public void setPostSet(List<Post> postSet) {this.postSet = postSet;}
+    public void setPostSet(List<Post> postSet) {
+        this.postSet = postSet;
+    }
 }
