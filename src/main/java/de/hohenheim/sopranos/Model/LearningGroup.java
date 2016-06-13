@@ -19,6 +19,9 @@ public class LearningGroup {
 
     Boolean freeForAll = true;
 
+    @OneToOne
+    SopraUser sopraHost;
+
     @ManyToMany
     @JoinTable(
             name = "GROUPPARTICIPANTS",
@@ -34,7 +37,8 @@ public class LearningGroup {
     }
 
 
-    public LearningGroup(String name) {
+    public LearningGroup(SopraUser sopraHost, String name) {
+        this.sopraHost = sopraHost;
         this.name = name;
     }
 
@@ -89,4 +93,19 @@ public class LearningGroup {
         this.postSet = postSet;
     }
 
+    public Boolean getFreeForAll() {
+        return freeForAll;
+    }
+
+    public void setFreeForAll(Boolean freeForAll) {
+        this.freeForAll = freeForAll;
+    }
+
+    public SopraUser getSopraHost() {
+        return sopraHost;
+    }
+
+    public void setSopraHost(SopraUser sopraHost) {
+        this.sopraHost = sopraHost;
+    }
 }
