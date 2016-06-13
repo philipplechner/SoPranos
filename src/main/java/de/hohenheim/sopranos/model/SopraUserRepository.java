@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface SopraUserRepository extends JpaRepository<SopraUser, String> {
 
-    public SopraUser findByName(String username);
+    public SopraUser findByEmail(String email);
 }

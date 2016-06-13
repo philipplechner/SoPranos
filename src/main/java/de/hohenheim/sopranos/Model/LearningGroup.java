@@ -11,6 +11,7 @@ public class LearningGroup {
     @GeneratedValue
     Integer lgId;
 
+    @Column(unique = true)
     String name;
 
     String description;
@@ -36,6 +37,10 @@ public class LearningGroup {
     public LearningGroup() {
     }
 
+
+    public LearningGroup(SopraUser sopraHost) {
+        this.sopraHost = sopraHost;
+    }
 
     public LearningGroup(SopraUser sopraHost, String name) {
         this.sopraHost = sopraHost;

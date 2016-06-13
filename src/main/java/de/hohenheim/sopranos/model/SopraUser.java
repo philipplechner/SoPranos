@@ -15,6 +15,7 @@ public class SopraUser {
 
     String name;
 
+    @Column(unique = true)
     String username;
 
     String courseOfStudys;

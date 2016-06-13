@@ -19,7 +19,7 @@ public class UserService {
 
     public SopraUser getCurrentNegoisstUser() {
 
-        return sopraUserRepository.findByName(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+        return sopraUserRepository.findByEmail(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
     }
 
 
